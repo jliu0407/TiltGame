@@ -14,7 +14,7 @@ A. Required elements
  	the camera.
  - Press 'Q' to quit the game
  - Press 'R' to reset the game to the intial state
- - The maximum tilting angle of the board is 10 degrees
+ - The maximum tilting angle of the board is 20 degrees
  - Each gameobject is associated with a color and the ball has a metallic appearance
  - Ball will bounce off the walls in contact
  
