@@ -19,19 +19,19 @@ public class UserInputs : MonoBehaviour {
         float xRotation = getAngle(transform.eulerAngles.x);
         float zRotation = getAngle(transform.eulerAngles.z);
         
-        if (Input.GetKey("up") && xRotation <= 10)
+        if ((Input.GetAxis("Vertical") <= 0.2) && xRotation <= 10)
         {
             transform.Rotate(Vector3.right, timeAngle);
         }
-        if (Input.GetKey("down") && xRotation >= -10)
+        if ((Input.GetAxis("Vertical")  >= -0.2) && xRotation >= -10)
         {
             transform.Rotate(Vector3.left, timeAngle);
         }
-        if (Input.GetKey("left") && zRotation <= 10)
+        if (Input.GetAxis("Horizontal") <= 0.2 && zRotation <= 10)
         {
             transform.Rotate(Vector3.forward, timeAngle);
         }
-        if (Input.GetKey("right") && zRotation >= -10)
+        if (Input.GetAxis("Horizontal") >= -0.2 && zRotation >= -10)
         {
             transform.Rotate(Vector3.back, timeAngle);
         }
