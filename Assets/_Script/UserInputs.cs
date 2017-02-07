@@ -2,10 +2,10 @@
 using System.Collections;
 
 public class UserInputs : MonoBehaviour {
-    float timeAngle;
+    float speed;
     // Use this for initialization
     void Start () {
-        timeAngle = Time.deltaTime * 15;
+        speed = Time.deltaTime * 15;
     }
 
     private float getAngle(float angle)
@@ -21,19 +21,19 @@ public class UserInputs : MonoBehaviour {
         
         if ((Input.GetAxis("Vertical") <= 0.2) && xRotation <= 10)
         {
-            transform.Rotate(Vector3.right, timeAngle);
+            transform.Rotate(Vector3.right * speed);
         }
         if ((Input.GetAxis("Vertical")  >= -0.2) && xRotation >= -10)
         {
-            transform.Rotate(Vector3.left, timeAngle);
+            transform.Rotate(Vector3.left * speed);
         }
         if (Input.GetAxis("Horizontal") <= 0.2 && zRotation <= 10)
         {
-            transform.Rotate(Vector3.forward, timeAngle);
+            transform.Rotate(Vector3.forward * speed);
         }
         if (Input.GetAxis("Horizontal") >= -0.2 && zRotation >= -10)
         {
-            transform.Rotate(Vector3.back, timeAngle);
+            transform.Rotate(Vector3.back * speed);
         }
         if (Input.GetKeyDown(KeyCode.Q))
         {
