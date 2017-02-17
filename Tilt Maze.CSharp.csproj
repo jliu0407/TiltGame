@@ -76,6 +76,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\_Script\UserInputs.cs" />
+    <Compile Include="Assets\_Script\barrierScript.cs" />
+    <Compile Include="Assets\_Script\initialPlacement.cs" />
     <Compile Include="Assets\_Script\playerScript.cs" />
     <Compile Include="Assets\_Script\spinScript.cs" />
   </ItemGroup>
