@@ -3,29 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class initialPlacement : MonoBehaviour {
-    private Vector3[] hingePos = {
-        new Vector3(-4.0f, 0.3f, -4.0f), new Vector3(-2.0f, 0.2f, -4.0f), new Vector3(0.0f, 0.2f, -4.0f), new Vector3(2.0f, 0.2f, -4.0f), new Vector3(4.0f, 0.2f, -4.0f),
-        new Vector3(3.0f, 0.2f, -3.0f), new Vector3(1.0f, 0.2f, -3.0f), new Vector3(-1.0f, 0.2f, -3.0f), new Vector3(-3.0f, 0.2f, -3.0f),
-        new Vector3(-4.0f, 0.2f, -2.0f), new Vector3(-2.0f, 0.2f, -2.0f), new Vector3(0.0f, 0.2f, -2.0f), new Vector3(2.0f, 0.2f, -2.0f), new Vector3(4.0f, 0.2f, -2.0f),
-        new Vector3(3.0f, 0.2f, -1.0f), new Vector3(1.0f, 0.2f, -1.0f), new Vector3(-1.0f, 0.2f, -1.0f), new Vector3(-3.0f, 0.2f, -1.0f),
-        new Vector3(-4.0f, 0.2f, 0.0f), new Vector3(-2.0f, 0.2f, 0.0f), new Vector3(2.0f, 0.2f, 0.0f), new Vector3(4.0f, 0.2f, 0.0f),
-        new Vector3(3.0f, 0.2f, 1.0f), new Vector3(1.0f, 0.2f, 1.0f), new Vector3(-1.0f, 0.2f, 1.0f), new Vector3(-3.0f, 0.2f, 1.0f),
-        new Vector3(-4.0f, 0.2f, 2.0f), new Vector3(-2.0f, 0.2f, 2.0f), new Vector3(0.0f, 0.2f, 2.0f), new Vector3(2.0f, 0.2f, 2.0f), new Vector3(4.0f, 0.2f, 2.0f),
-        new Vector3(3.0f, 0.2f, 3.0f), new Vector3(1.0f, 0.2f, 3.0f), new Vector3(-1.0f, 0.2f, 3.0f), new Vector3(-3.0f, 0.2f, 3.0f),
-        new Vector3(-4.0f, 0.2f, 4.0f), new Vector3(-2.0f, 0.2f, 4.0f), new Vector3(0.0f, 0.2f, 4.0f), new Vector3(2.0f, 0.2f, 4.0f), new Vector3(4.0f, 0.2f, 4.0f)
-    };
+
     private GameObject star;
     private GameObject barrier;
     // Use this for initialization
     void Start () {
         GameObject starParent = GameObject.Find("Stars");
         GameObject barrierParent = GameObject.Find("Obstacles");
-        for (int i = 0; i < hingePos.Length; i++)
+        for (int i = -4; i < 5; i++)
         {
-            Quaternion rotation = generateRotation();
-            barrier = Instantiate(Resources.Load("Prefabs/barrier"), hingePos[i], rotation) as GameObject;
-            barrier.transform.parent = barrierParent.transform;
+            for (int j = -4; j < 5; j++)
+            {
+                if (!(i == 0 && j == 0)) {
+                    Vector3 position = new Vector3(i, 0.2f, j);
+                    if ((i % 2 == 0 && j % 2 == 0) || (i % 2 != 0 && j % 2 != 0))
+                    {
+                        Quaternion rotation = generateRotation();
+                        barrier = Instantiate(Resources.Load("Prefabs/barrier"), position, rotation) as GameObject;
+                        barrier.transform.parent = barrierParent.transform;
+                    }
+                }
+            }
         }
+
         ArrayList starPos = new ArrayList();
         Vector3 pos = new Vector3(4.5f, 0.6f, 4.5f);
         starPos.Add(pos);
@@ -33,10 +33,10 @@ public class initialPlacement : MonoBehaviour {
         {
             do
             {
-                pos = new Vector3(Random.Range(-5, 4)+0.5f, 0.6f, Random.Range(-5, 4)+0.5f);
+                pos = new Vector3(Random.Range(-5, 5)+0.5f, 0.6f, Random.Range(-5, 5)+0.5f);
             } while (starPos.Contains(pos));
             starPos.Add(pos);
-            star = Instantiate(Resources.Load("Prefabs/Collectable"), pos, new Quaternion(0, 0, 0, 0)) as GameObject;
+            star = Instantiate(Resources.Load("Prefabs/Collectable"), pos, Quaternion.identity) as GameObject;
             star.transform.parent = starParent.transform;
         }
 
